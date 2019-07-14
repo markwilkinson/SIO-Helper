@@ -178,6 +178,7 @@ module SioHelper
       $dct = RDF::Vocabulary.new("http://purl.org/dc/terms/")
       $schema = RDF::Vocabulary.new("http://schema.org/")
       $foaf = RDF::Vocabulary.new("http://xmlns.com/foaf/0.1/")
+      $iao = RDF::Vocabulary.new('http://purl.obofoundry.org/obo/')
     end
   
   end
