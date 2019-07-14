@@ -50,14 +50,17 @@ module SioHelper
                   o = RDF::Literal.new(o.to_s, :datatype => RDF::XSD.float)
           elsif o.to_s =~ /^[+-]?[0-9]+$/
                   o = RDF::Literal.new(o.to_s, :datatype => RDF::XSD.int)
+          elsif o.is_a?(RDF::Literal)
+                  #o = RDF::Literal.new(o.to_s, :language => :en)
           elsif o.respond_to?('gsub')
                   o.gsub!(/^_+/, "")  # strip off the leading ___ which are an indication of a literal string
                   o = RDF::Literal.new(o.to_s, :language => :en)
           else
-                  warn "Could not find anything to do with the object #{o}.  Giving up. Proceeding to next triple"
+                  warn "SIO::Helper#triplify  Could not find anything to do with the object #{o.class} #{o.to_s}.  Giving up. Proceeding to next triple"
           end
         end
-        
+        #binding.pry
+          
         triple = RDF::Statement(s, p, o) 
         repo.insert(triple)
         
